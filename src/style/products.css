@@ -1,0 +1,40 @@
+.productDisplay {
+    margin: 0;
+    padding: 0;
+}
+
+.buttonsContainer .btn {
+    width: 150px;
+    height: 50px;
+    padding: 2px;
+    text-decoration: none;
+}
+
+.btn-link {
+    text-decoration: none;
+}
+
+.label {
+    font-weight: 700;
+}
+
+/* products.css */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.searchInput
+{
+    border-radius: 15px !important;
+ 
+}
+.productsList
+{
+ 
+  margin-left: 175px !important;
+  width: auto !important;
+
+}

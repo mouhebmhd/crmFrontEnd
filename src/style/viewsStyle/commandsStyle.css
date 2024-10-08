@@ -1,0 +1,63 @@
+.commandsDisplayParent
+{
+position: relative !important;
+left: 75px !important;
+width: 75vw !important;
+
+}
+.commandsDisplay
+{
+
+    width: 80vw !important;
+    position: relative !important;
+   
+}
+table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+}
+th{
+    border-bottom: 1px solid #d42424 !important;
+}
+th, td {
+    padding: 10px !important;
+    text-align: left !important; /* Align text to the left */
+}
+
+/* Set a minimum width for specific columns */
+td:nth-child(4), /* Total Amount */
+td:nth-child(5) { /* Address */
+    min-width: fit-content !important; /* Adjust as necessary */
+}
+#showButton
+{
+    border-color:#007BFF !important;
+    background-color:#007BFF !important;
+    height:fit-content;
+    padding: 10px !important;
+    
+}
+#updateButton
+{
+    border-color:#FFC107  !important;
+    background-color:#FFC107  !important;
+    height:fit-content;
+    padding: 10px !important;
+   
+}
+#deleteButton
+{
+    background-color: #DC3545 !important;
+    height:fit-content;
+    padding: 10px !important;
+   
+}
+#showButtonText
+{
+    text-decoration: none !important;
+    color: #fff;
+}
+button
+{
+    margin-inline: 5px !important;
+}

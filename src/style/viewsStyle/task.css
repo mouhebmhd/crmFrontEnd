@@ -1,0 +1,57 @@
+
+
+.dropdown {
+    position: relative;
+    float: right;
+    color: blue;
+    font-size: 25px; /* or any other size you prefer */
+  }
+  
+  .icon1 {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  .dropdown-menu {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    min-width: 160px;
+  }
+  
+  .dropdown-item {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    color: black;
+    cursor: pointer;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #f1f1f1;
+  }
+  .tasksContainer
+  {
+    position: relative !important;
+    left:250px !important;
+    display: flex !important;
+    justify-content: space-between;
+    width: 80vw;
+  }
+  .task-item
+  {
+    width: 20vw!important;
+    padding: 10px;
+    border: 1px solid #6060FF;
+    border-radius: 15px;
+    margin: 10px;
+  }
+  span
+  {
+    font-weight: 600;
+  }
