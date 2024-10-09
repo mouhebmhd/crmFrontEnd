@@ -38,3 +38,15 @@
   width: auto !important;
 
 }
+.addProductButton
+{
+    background-color: #007bff;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+    border-radius: 10px;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+}

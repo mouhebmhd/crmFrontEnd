@@ -31,34 +31,37 @@
 .srch_bar .input-group-addon { margin: 0 0 0 -27px;}
 
 
-.sidebar {
-    width: 250px;
+.conversationBar {
+    width:fit-content;
     background-color: #f5f5f5;
-    padding: 20px;
-    border-right: 1px solid #ddd;
+    padding: 10px;
     overflow-y: auto;
+    grid-area: discussionBar;
+    color: var(--bs-muted);
+
+
 }
 
-.sidebar ul {
+.conversationBar ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.sidebar li {
+.conversationBar li {
     display: flex;
     align-items: center;
     padding: 10px;
     border-bottom: 1px solid #ddd;
 }
 
-.sidebar li span:first-child {
+.conversationBar li span:first-child {
     font-size: 14px;
     color: #333;
     margin-right: auto;
 }
 
-.sidebar li span:last-child {
+.conversationBar li span:last-child {
     font-size: 12px;
     color: #888;
 }
@@ -92,6 +95,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+
 }
 
 .message {
@@ -220,3 +224,41 @@
     text-decoration-color: black;
     text-decoration-line: underline;
   }
+.messengerContainer
+{
+    position: relative;
+    left: 6.8vw;
+    width:85vw !important;
+}
+.conversationsContainer
+{
+    height: 85vh !important;
+    width: auto !important;
+    grid-area: conversationDisplay;
+    margin: 0;
+}
+.messengerContainer
+{
+    display: grid;
+    position: relative;
+    width: 82vw !important;
+    left: 125px;
+    grid-template-areas: 
+    "discussionBar conversationDisplay"
+    ;
+    grid-template-columns: 1fr 3fr;
+    column-gap:20px;
+}
+.sendMessageButton
+{
+    display: flex; 
+    align-items: center;
+    column-gap: 5px;
+
+}
+.conversationPhoto
+{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}

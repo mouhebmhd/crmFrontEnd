@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import io from "socket.io-client";
-
+import "../../style/viewsStyle/modalsStyle.css"
+import { IoMdAdd } from "react-icons/io";
+import { MdCancel } from "react-icons/md";
+import { CiEdit } from "react-icons/ci";
 
 
 function AddProduct({ addProduct, selectedProduct, products, setProducts, setSelectedProduct, fetchProducts, categories, setCategories, loading, setLoading }) {
@@ -30,7 +33,7 @@ function AddProduct({ addProduct, selectedProduct, products, setProducts, setSel
         general: ''
     });
     const [successMessage, setSuccessMessage] = useState('');
-    const socket = io.connect("http://localhost:6000");
+    const socket = io.connect("http://localhost:8000");
 
     const fetchCategories = useCallback(async () => {
         setLoading(true);
@@ -174,7 +177,7 @@ function AddProduct({ addProduct, selectedProduct, products, setProducts, setSel
     return (
         <>
             {/* fade */}
-            <div className="modal fade h-80" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal  addProductModal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -227,7 +230,7 @@ function AddProduct({ addProduct, selectedProduct, products, setProducts, setSel
                                     <div className="form-group">
                                         <label htmlFor="categorie_idcategorie">Category:</label>
                                         <select
-                                            className="form-control"
+                                            className="form-control formControlSelect"
                                             id="categorie_idcategorie"
                                             name="categorie_idcategorie"
                                             value={formData.categorie_idcategorie}
@@ -268,9 +271,9 @@ function AddProduct({ addProduct, selectedProduct, products, setProducts, setSel
 
                                         />
                                     </div>
-                                    <div className="modal-footer d-flex column-gap-2">
-                                        <button type="button" className="btn btn-danger" data-bs-dismiss="modal" id="closeButton">Cancel</button>
-                                        <button type="submit" className="btn btn-primary">{selectedProduct ? 'Update Product' : 'Add Product'}</button>
+                                    <div className="modal-footer d-flex column-gap-2 justify-content-center">
+                                        <button type="button" className="btn deleteButton" data-bs-dismiss="modal" id="closeButton"><MdCancel className='fs-4'></MdCancel> Cancel</button>
+                                        <button type="submit" className=" doubleFnButton">{selectedProduct ? <CiEdit className='fs-4'></CiEdit> : <IoMdAdd className='fs-4'></IoMdAdd>}{selectedProduct ? 'Update Product' : 'Add Product'}</button>
                                     </div>
                                 </form>
                                 {loading && <div className="spinner-border text-primary" role="status"><span className="sr-only">Loading...</span></div>}

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useContext } from 'react';
 import axios from 'axios';
 import AddCategorie from './AddCategorie';
 import { UserPermissionsContext } from '../context/UserPermissionsPage'; // Correction de l'import
-
+import "../../style/viewsStyle/categorieStyle.css"
 
 function DisplayCategories({ categories, setCategories, addCategory }) {
     const [loading, setLoading] = useState(true);
@@ -125,8 +125,8 @@ function DisplayCategories({ categories, setCategories, addCategory }) {
                     <div className="container-fluid d-flex justify-content-end mb-2">
                         {(isAdmin || (userPermissions && userPermissions.addCategorie === 1)) && ( // Add parentheses here
 
-                            <button className="btn btn-success mr-2" data-bs-toggle="modal" data-bs-target="#categoryModal" onClick={() => handleUpdate(null, 'ajouter')}>
-                                Ajouter un nouveau categorie +
+                            <button className="addCategoryButton mr-2" data-bs-toggle="modal" data-bs-target="#categoryModal" onClick={() => handleUpdate(null, 'ajouter')}>
+                                Ajouter une nouvelle Catégorie +
                             </button>
                         )}
                     </div>

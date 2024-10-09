@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes ,useNavigate  } from "react-router-dom";
 import Dashbord from './views/dashboard/Dashbord';
 import Products from './views/product/Products';
+import Calendar from './views/Calendar/Calendar';
 import ProductDetails from './views/product/ProductDetails';
 import Commands from './views/commands/Commands';
 import Invoices from './views/invoices/invoices';
@@ -117,6 +118,7 @@ function App() {
                     <Route path="historique" element={<Historique type="employe" />} />
                   </Route>
 
+                  <Route path="calendar" element={<Calendar />}></Route>
 
 
                   <Route path="Pageclients/:id" element={<Pageclients />} >

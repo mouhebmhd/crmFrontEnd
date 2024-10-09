@@ -4,6 +4,7 @@ import { FaRegPlusSquare, FaRegMinusSquare } from 'react-icons/fa';
 import TopBar from "./TopNav"
 import SideBar from "../sidebar/SideBar.js"
 import "./TopNav.css"
+import "../../style/viewsStyle/cartStyle.css"
 function GetCartProducts() {
     const [cartProducts, setCartProducts] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -104,7 +105,7 @@ function GetCartProducts() {
                 <SideBar />
                 <div className="d-flex container-fluid m-0 p-0 flex-column">
                     <TopBar />
-                    <div className="container-fluid p-2 m-0 ">
+                    <div className="container-fluid productsCartContainer p-2 m-0 ">
                         <div >
                             {loading ? (
                                 <div className="cart-count">Loading...</div>

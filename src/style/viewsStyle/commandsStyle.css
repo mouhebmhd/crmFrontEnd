@@ -15,10 +15,9 @@ width: 75vw !important;
 table {
     width: 100% !important;
     border-collapse: collapse !important;
+    margin-top: 15px;
 }
-th{
-    border-bottom: 1px solid #d42424 !important;
-}
+
 th, td {
     padding: 10px !important;
     text-align: left !important; /* Align text to the left */
@@ -39,9 +38,10 @@ td:nth-child(5) { /* Address */
 }
 #updateButton
 {
-    border-color:#FFC107  !important;
-    background-color:#FFC107  !important;
+    border:none  !important;
+    background-color:var(--bs-success)  !important;
     height:fit-content;
+    width: 100px;
     padding: 10px !important;
    
 }
@@ -49,6 +49,7 @@ td:nth-child(5) { /* Address */
 {
     background-color: #DC3545 !important;
     height:fit-content;
+    width: 100px;
     padding: 10px !important;
    
 }
@@ -56,8 +57,14 @@ td:nth-child(5) { /* Address */
 {
     text-decoration: none !important;
     color: #fff;
+    width: 100px;
 }
 button
 {
     margin-inline: 5px !important;
+    margin-top: 5px !important;
+}
+#showButton
+{
+    width: 100px !important;
 }

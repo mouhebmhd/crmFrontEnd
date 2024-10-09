@@ -25,7 +25,7 @@ function CompleteCommand(props) {
     const userid = localStorage.getItem('userId');
     const role = localStorage.getItem('role');
 
-    const socket = io.connect("http://localhost:6000");
+    const socket = io.connect("http://localhost:8000");
 
 
 

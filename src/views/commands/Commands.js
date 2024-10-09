@@ -7,6 +7,10 @@ import { Link } from 'react-router-dom';
 import { UserPermissionsContext } from '../context/UserPermissionsPage'; // Correction de l'import
 import "../../style/viewsStyle/commandsStyle.css"
 import io from "socket.io-client";
+import { CiEdit } from "react-icons/ci";
+import { MdDelete } from "react-icons/md";
+import { IoIosInformationCircle } from "react-icons/io";
+import { FaInfo } from 'react-icons/fa';
 
 
 
@@ -19,7 +23,7 @@ function Commands() {
   const isAdmin = localStorage.getItem('role') === 'admin';
   const userPermissions = useContext(UserPermissionsContext);
 
-  const socket = io.connect("http://localhost:6000");
+  const socket = io.connect("http://localhost:8000");
 
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -228,19 +232,21 @@ function Commands() {
                         {(isAdmin || (userPermissions && userPermissions.updateCommande === 1)) && ( // Add parentheses here
 
                           <button type="button" 
-                            className="btn btn-warning  mr-2"
+                            className="  mr-2 d-flex"
                             id='updateButton'
                             onClick={() => updateCommandStatus(command.idcommande, command.statut_commande)}
                           >
-                            Update
+                          <CiEdit className="mx-1"></CiEdit>  Update
                           </button>
                         )}
                         {(isAdmin || (userPermissions && userPermissions.deleteCommande === 1)) && ( // Add parentheses here
-                          <button type="button" className="btn " id="deleteButton"> delete</button>
+                          <button type="button" className=" " id="deleteButton">
+                            
+                            <MdDelete className='mx-1'></MdDelete> Delete</button>
                         )}
-                        <button type="button"  className="btn  " id='showButton'>
+                        <button type="button"  className="  " id='showButton'>
                           <Link to={`/commands/${command.idcommande}`} id="showButtonText">
-                            <span>Details</span>
+                           <IoIosInformationCircle className='mx-1'></IoIosInformationCircle> Details
                           </Link>
 
                         </button>
@@ -252,15 +258,15 @@ function Commands() {
               <nav aria-label="Page navigation">
                 <ul className="pagination">
                   <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
-                    <button type="button"  className="btn page-link" onClick={() => handlePageChange(currentPage - 1)}>Previous</button>
+                    <button type="button"  className=" page-link" onClick={() => handlePageChange(currentPage - 1)}>Previous</button>
                   </li>
                   {[...Array(totalPages).keys()].map(page => (
                     <li key={page + 1} className={`page-item ${page + 1 === currentPage ? 'active' : ''}`}>
-                      <button type="button" className=" btn page-link" onClick={() => handlePageChange(page + 1)}>{page + 1}</button>
+                      <button type="button" className="  page-link" onClick={() => handlePageChange(page + 1)}>{page + 1}</button>
                     </li>
                   ))}
                   <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
-                    <button type="button" className="btn page-link" onClick={() => handlePageChange(currentPage + 1)}>Next</button>
+                    <button type="button" className=" page-link" onClick={() => handlePageChange(currentPage + 1)}>Next</button>
                   </li>
                 </ul>
               </nav>

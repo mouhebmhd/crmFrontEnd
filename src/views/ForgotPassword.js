@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import styles from './forgotPasswordStyle.module.css'; // Import CSS module
+import { FiSend } from "react-icons/fi";
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState('');
@@ -22,34 +24,38 @@ const ForgotPassword = () => {
     };
 
     return (
-        <div>
-            <h2>Mot de passe oublié</h2>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Entrez votre e-mail"
-                    required
-                />
-                <div className="form-group">
-                    <label htmlFor="userType">Type d'utilisateur</label>
-                    <select
-                        className="form-control"
-                        id="userType"
-                        name="userType"
-                        value={userType}
-                        onChange={(e) => setUserType(e.target.value)}
-                    >
-                        <option value="">Select  Type</option>
-
-                        <option value="employe">Employé</option>
-                        <option value="client">Client</option>
-                    </select>
-                </div>
-                <button type="submit">Envoyer le code</button>
-            </form>
-            {message && <p>{message}</p>}
+        <div className={styles.container}>
+            <h2 className={styles.heading}>Mot de passe oublié</h2>
+            <div className={styles.formContainer}>
+                <form onSubmit={handleSubmit}>
+                    <div className={styles.formGroup}>
+                        <input
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="Entrez votre e-mail"
+                            required
+                            className={styles.inputField}
+                        />
+                    </div>
+                    <div className={styles.formGroup}>
+                        <label htmlFor="userType" className={styles.label}>Type d'utilisateur</label>
+                        <select
+                            className={styles.inputField}
+                            id="userType"
+                            name="userType"
+                            value={userType}
+                            onChange={(e) => setUserType(e.target.value)}
+                        >
+                            <option value="">Sélectionnez le type</option>
+                            <option value="employe">Employé</option>
+                            <option value="client">Client</option>
+                        </select>
+                    </div>
+                    <button type="submit" className={styles.submitButton}><FiSend></FiSend> Envoyer le code</button>
+                </form>
+                {message && <p className={styles.message}>{message}</p>}
+            </div>
         </div>
     );
 };

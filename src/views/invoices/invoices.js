@@ -1,5 +1,10 @@
 import React, { useState, useEffect, useCallback, useContext, useMemo } from 'react';
 import axios from 'axios';
+import { MdDelete } from "react-icons/md";
+
+import { CiSearch } from "react-icons/ci";
+import { FaEye } from "react-icons/fa";
+
 import SideBar from '../../components/sidebar/SideBar';
 import TopBar from '../../components/sidenav/TopNav';
 import { Link } from 'react-router-dom';
@@ -174,7 +179,7 @@ function Invoices() {
           </div>
         </div>
           <div className="buttonContainer d-flex justify-content-center">
-          <button type="submit" className="btn btn-primary">Search</button>
+          <button type="submit" className="searchButton"><CiSearch className='mx-2'> </CiSearch> Search</button>
 
           </div>
       </form>
@@ -208,17 +213,18 @@ function Invoices() {
         <td>{invoice.statut_paiement_facture}</td>
         {role !== 'client' && <td>{invoice.idcommande}</td>}
         <td>
-          <button className="btn btn-success">
+          <button className=" showButtonInv">
             <Link to={`/invoices/${invoice.idcommande}`} className="text-white showButtonText">
-              Show
+            <FaEye className='mx-2'></FaEye>  Show
             </Link>
           </button>
           {isAdmin && (
             <button
               onClick={() => handleDelete(invoice.idfacture)}
-              className="btn btn-danger ms-2"
+              className="  deleteButtonInv  ms-2   "
             >
-              Delete
+              <MdDelete className='mx-1'/>
+              Delete 
             </button>
           )}
         </td>

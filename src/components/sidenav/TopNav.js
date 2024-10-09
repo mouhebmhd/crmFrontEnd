@@ -3,6 +3,8 @@ import { FaBell, FaArrowDown, FaShoppingBasket } from 'react-icons/fa';
 import { CiSettings } from "react-icons/ci";
 import flag from "../../images/flag.png";
 import { Link } from 'react-router-dom';
+import { IoIosNotifications } from "react-icons/io";
+
 import io from 'socket.io-client';
 import { FaCartArrowDown } from "react-icons/fa";
 
@@ -32,7 +34,7 @@ function TopNav() {
     const navigate = useNavigate(); // Initialize useNavigate
 /*
     useEffect(() => {
-        socketRef.current = io('http://localhost:6000', {
+        socketRef.current = io('http://localhost:8000', {
             query: { userId }
         });
 
@@ -174,14 +176,18 @@ function TopNav() {
             </div>
 
             {showNotifications && (
-                <div className="notification-list">
+                <div className="notification-list notificationContainer">
                     {notifications.length > 0 ? (
                         notifications.map((notification, index) => (
-                            <div key={index} className="notification-item">
+                            <div key={index} className="notification-item d-flex justify-content-between align-items-center ">
+                                <div  className='notificationImageContainer' >
+                                    <IoIosNotifications></IoIosNotifications>
+                                </div>
                                 <p>{notification.message}</p>
-                                <div onClick={() => handleDelete(notification.id)}><RiDeleteBinLine /></div>
+                                <div className='deleteNotification' >
+                                    <button type="button" onClick={() => handleDelete(notification.id)} className='d-flex align-items-center deleteNotificationBtn'><RiDeleteBinLine className='mx-1'/> delete</button>
+                                </div>
 
-                                <span className="notification-timestamp">{notification.timestamp}</span>
                             </div>
                         ))
                     ) : (

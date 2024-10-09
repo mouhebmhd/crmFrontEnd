@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../style/viewsStyle/registerStyle.css";
+import { GiConfirmed } from "react-icons/gi";
+
+import style from "../style/viewsStyle/registerStyle.module.css";
 import femaleAvatar from '../images/uploads/female_avatar.png';
 import maleAvatar from '../images/uploads/male_avatar.png';
 
 const emailValidator = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-//const passwordValidator = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
-//const passwordValidator = /^(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
 const passwordValidator = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
 
-
-//? . presente carectere * existe  ou pas ou exite plusueur fois + existe ou existe plus
 export default function Register() {
     const [formData, setFormData] = useState({
         nom: "",
@@ -58,9 +56,6 @@ export default function Register() {
         setErrors({ ...errors, ...validationErrors });
     };
 
-
-
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -69,45 +64,35 @@ export default function Register() {
 
         setTouchedFields({ ...touchedFields, [name]: true });
         if (name === 'genre') {
-            if (value == 'femme') {
+            if (value === 'femme') {
                 // Set photo based on gender
                 const formData1 = new FormData();
                 formData1.append('file', femaleAvatar);
                 formData1.append('upload_preset', 'xlcnkdgy');
                 axios.post('https://api.cloudinary.com/v1_1/dik98v16k/image/upload/', formData1)
                     .then(response => {
-                        setFormData((prev) => ({ ...prev, photo: response.data.secure_url })); // Set photo path
-
+                        setFormData((prev) => ({ ...prev, photo: response.data.secure_url }));
                     })
-                    .catch(error => { console.log(error) })
-
-            }
-            else {
+                    .catch(error => { console.log(error) });
+            } else {
                 // Set photo based on gender
                 const formData1 = new FormData();
                 formData1.append('file', maleAvatar);
                 formData1.append('upload_preset', 'xlcnkdgy');
                 axios.post('https://api.cloudinary.com/v1_1/dik98v16k/image/upload/', formData1)
                     .then(response => {
-                        console.log(response.data.secure_url)
-                        setFormData((prev) => ({ ...prev, photo: response.data.secure_url })); // Set photo path
-
+                        setFormData((prev) => ({ ...prev, photo: response.data.secure_url }));
                     })
-                    .catch(error => { console.log(error) })
-
+                    .catch(error => { console.log(error) });
             }
         }
 
-
-
-
         setErrors((prevErrors) => ({
             ...prevErrors,
-            [`${name}Error`]: "", // Effacer l'erreur du champ modifié
-            generalError: "", // Effacer l'erreur générale lorsqu'un champ est modifié
+            [`${name}Error`]: "",
+            generalError: "",
         }));
     };
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -124,8 +109,8 @@ export default function Register() {
 
         const validationErrors = validateForm(formData);
         if (Object.keys(validationErrors).length === 0) {
-            const photo = formData.photo; // Get the path
-            const dataToSend = { ...formData, photo: photo }; // Include base64 photo
+            const photo = formData.photo;
+            const dataToSend = { ...formData, photo: photo };
             try {
                 const response = await axios.post("http://127.0.0.1:4000/api/registerUser", dataToSend);
                 console.log("Response from server:", response.data);
@@ -141,7 +126,6 @@ export default function Register() {
             setErrors(validationErrors);
         }
     };
-
 
     const validateForm = (data) => {
         let errors = {};
@@ -173,22 +157,23 @@ export default function Register() {
         if (touchedFields.adresse && !data.adresse.trim()) errors.adresseError = "L'adresse est requise";
         if (touchedFields.dateDeNaissance && !data.dateDeNaissance) errors.dateDeNaissanceError = "La date de naissance est requise";
 
-
         return errors;
     };
 
     return (
-        <div className="registerContainer m-0 p-0">
-            <div className="col-md-6">
-                <div className="card">
-                    <div className="card-body">
-                        <h2 className="card-title text-center">Inscription</h2>
-                        <form>
-                            <div className="form-group">
+        <div className={style.registerContainer}>
+            <div className={style.container }>
+                <div className={style.bgImage + "" }></div>
+                <div className={style.card + " d-flex align-items-center"}>
+                    <div className="card-body ">
+                        <h2 className="card-title text-center mb-3">Registration</h2>
+                        <form onSubmit={handleSubmit}>
+                            <div className="row">
+                               <div className="form-group col-md-6">
                                 <label htmlFor="nom">Nom</label>
                                 <input
                                     type="text"
-                                    className={`form-control ${errors.nomError && touchedFields.nom ? "invalid" : ""}`}
+                                    className={`${style.formControl} ${errors.nomError && touchedFields.nom ? style.invalid : ""}`}
                                     id="nom"
                                     name="nom"
                                     value={formData.nom}
@@ -196,14 +181,14 @@ export default function Register() {
                                     onBlur={handleBlur}
                                     onFocus={() => handleFocus("nom")}
                                 />
-                                {errors.nomError && touchedFields.nom && <div className="errorMsg">{errors.nomError}</div>}
+                                {errors.nomError && touchedFields.nom && <div className={style.errorMsg}>{errors.nomError}</div>}
                             </div>
 
-                            <div className="form-group">
+                            <div className="form-group col-md-6">
                                 <label htmlFor="prenom">Prénom</label>
                                 <input
                                     type="text"
-                                    className={`form-control ${errors.prenomError && touchedFields.prenom ? "invalid" : ""}`}
+                                    className={`${style.formControl} ${errors.prenomError && touchedFields.prenom ? style.invalid : ""}`}
                                     id="prenom"
                                     name="prenom"
                                     value={formData.prenom}
@@ -211,14 +196,16 @@ export default function Register() {
                                     onBlur={handleBlur}
                                     onFocus={() => handleFocus("prenom")}
                                 />
-                                {errors.prenomError && touchedFields.prenom && <div className="errorMsg">{errors.prenomError}</div>}
+                                {errors.prenomError && touchedFields.prenom && <div className={style.errorMsg}>{errors.prenomError}</div>}
+                            </div> 
                             </div>
-
-                            <div className="form-group">
+                            
+                        <div className="row">
+<div className="form-group col-md-6">
                                 <label htmlFor="email">Adresse e-mail</label>
                                 <input
                                     type="email"
-                                    className={`form-control ${errors.emailAddressError && touchedFields.email ? "invalid" : ""}`}
+                                    className={`${style.formControl} ${errors.emailAddressError && touchedFields.email ? style.invalid : ""}`}
                                     id="email"
                                     name="email"
                                     value={formData.email}
@@ -226,13 +213,14 @@ export default function Register() {
                                     onBlur={handleBlur}
                                     onFocus={() => handleFocus("email")}
                                 />
-                                {errors.emailAddressError && touchedFields.email && <div className="errorMsg">{errors.emailAddressError}</div>}
+                                {errors.emailAddressError && touchedFields.email && <div className={style.errorMsg}>{errors.emailAddressError}</div>}
                             </div>
-                            <div className="form-group">
+
+                            <div className="form-group col-md-6">
                                 <label htmlFor="password">Mot de passe</label>
                                 <input
                                     type="password"
-                                    className={`form-control ${errors.passwordError && touchedFields.password ? "invalid" : ""}`}
+                                    className={`${style.formControl} ${errors.passwordError && touchedFields.password ? style.invalid : ""}`}
                                     id="password"
                                     name="password"
                                     value={formData.password}
@@ -240,15 +228,16 @@ export default function Register() {
                                     onBlur={handleBlur}
                                     onFocus={() => handleFocus("password")}
                                 />
-                                {errors.passwordError && touchedFields.password && <div className="errorMsg">{errors.passwordError}</div>}
+                                {errors.passwordError && touchedFields.password && <div className={style.errorMsg}>{errors.passwordError}</div>}
                             </div>
-
-
-                            <div className="form-group">
+                        </div>
+                            
+                        <div className="row">   
+                        <div className="form-group col-md-6">
                                 <label htmlFor="passwordConfirmation">Confirmer le mot de passe</label>
                                 <input
                                     type="password"
-                                    className={`form-control ${errors.passwordConfirmationError && touchedFields.passwordConfirmation ? "invalid" : ""}`}
+                                    className={`${style.formControl} ${errors.passwordConfirmationError && touchedFields.passwordConfirmation ? style.invalid : ""}`}
                                     id="passwordConfirmation"
                                     name="passwordConfirmation"
                                     value={formData.passwordConfirmation}
@@ -256,14 +245,14 @@ export default function Register() {
                                     onBlur={handleBlur}
                                     onFocus={() => handleFocus("passwordConfirmation")}
                                 />
-                                {errors.passwordConfirmationError && touchedFields.passwordConfirmation && <div className="errorMsg">{errors.passwordConfirmationError}</div>}
+                                {errors.passwordConfirmationError && touchedFields.passwordConfirmation && <div className={style.errorMsg}>{errors.passwordConfirmationError}</div>}
                             </div>
 
-                            <div className="form-group">
+                            <div className="form-group col-md-6">
                                 <label htmlFor="telephone">Téléphone</label>
                                 <input
                                     type="tel"
-                                    className={`form-control ${errors.telephoneError && touchedFields.telephone ? "invalid" : ""}`}
+                                    className={`${style.formControl} ${errors.telephoneError && touchedFields.telephone ? style.invalid : ""}`}
                                     id="telephone"
                                     name="telephone"
                                     value={formData.telephone}
@@ -271,72 +260,82 @@ export default function Register() {
                                     onBlur={handleBlur}
                                     onFocus={() => handleFocus("telephone")}
                                 />
-                                {errors.telephoneError && touchedFields.telephone && <div className="errorMsg">{errors.telephoneError}</div>}
+                                {errors.telephoneError && touchedFields.telephone && <div className={style.errorMsg}>{errors.telephoneError}</div>}
                             </div>
+                        </div>
 
-                            <div className="form-group">
-                                <label htmlFor="adresse">Adresse</label>
-                                <input
-                                    type="text"
-                                    className={`form-control ${errors.adresseError && touchedFields.adresse ? "invalid" : ""}`}
-                                    id="adresse"
-                                    name="adresse"
-                                    value={formData.adresse}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    onFocus={() => handleFocus("adresse")}
-                                />
-                                {errors.adresseError && touchedFields.adresse && <div className="errorMsg">{errors.adresseError}</div>}
-                            </div>
+                        <div className="row">
+                                    <div className="form-group col-md-6">
+                                        <label htmlFor="adresse">Adresse</label>
+                                        <input
+                                            type="text"
+                                            className={`${style.formControl} ${errors.adresseError && touchedFields.adresse ? style.invalid : ""}`}
+                                            id="adresse"
+                                            name="adresse"
+                                            value={formData.adresse}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            onFocus={() => handleFocus("adresse")}
+                                        />
+                                        {errors.adresseError && touchedFields.adresse && <div className={style.errorMsg}>{errors.adresseError}</div>}
+                                    </div>
 
-                            <div className="form-group">
-                                <label htmlFor="dateDeNaissance">Date de naissance</label>
-                                <input
-                                    type="date"
-                                    className={`form-control ${errors.dateDeNaissanceError && touchedFields.dateDeNaissance ? "invalid" : ""}`}
-                                    id="dateDeNaissance"
-                                    name="dateDeNaissance"
-                                    value={formData.dateDeNaissance}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    onFocus={() => handleFocus("dateDeNaissance")}
-                                />
-                                {errors.dateDeNaissanceError && touchedFields.dateDeNaissance && <div className="errorMsg">{errors.dateDeNaissanceError}</div>}
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="genre">Genre </label>
+                                    <div className="form-group  col-md-6">
+                                        <label htmlFor="dateDeNaissance">Date de naissance</label>
+                                        <input
+                                            type="date"
+                                            className={`${style.formControl} ${errors.dateDeNaissanceError && touchedFields.dateDeNaissance ? style.invalid : ""}`}
+                                            id="dateDeNaissance"
+                                            name="dateDeNaissance"
+                                            value={formData.dateDeNaissance}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            onFocus={() => handleFocus("dateDeNaissance")}
+                                        />
+                                        {errors.dateDeNaissanceError && touchedFields.dateDeNaissance && <div className={style.errorMsg}>{errors.dateDeNaissanceError}</div>}
+                                    </div>
+                        </div>
+
+                        <div className="row">
+                        <div className="form-group col-md-6">
+                                <label htmlFor="genre">Genre</label>
                                 <select
-                                    className="form-control"
+                                    className={style.formControl}
                                     id="genre"
                                     name="genre"
                                     value={formData.genre}
                                     onChange={handleChange}
+                                    onFocus={() => handleFocus("genre")}
                                 >
                                     <option value="femme">Femme</option>
                                     <option value="homme">Homme</option>
                                 </select>
                             </div>
 
-                            <div className="form-group">
+                            <div className="form-group col-md-6">
                                 <label htmlFor="typeUtilisateur">Type d'utilisateur</label>
                                 <select
-                                    className="form-control"
+                                    className={style.formControl}
                                     id="typeUtilisateur"
                                     name="typeUtilisateur"
                                     value={formData.typeUtilisateur}
                                     onChange={handleChange}
+                                    onFocus={() => handleFocus("typeUtilisateur")}
                                 >
                                     <option value="employee">Employé</option>
                                     <option value="client">Client</option>
+                                    <option value="admin">Admin</option>
                                 </select>
                             </div>
+                        </div>
+                           <div className="row d-flex justify-content-center">
+                           {errors.generalError && <div className={style.errorMsg}>{errors.generalError}</div>}
+                            <button type="submit" className={style.submitButton }><GiConfirmed className="  mx-2"></GiConfirmed> S'inscrire</button> 
+                            </div> 
 
-
-                            {errors.generalError && <div className="errorMsg">{errors.generalError}</div>}
-                            <button type="submit" className="btn submitButton" onClick={handleSubmit}>S'inscrire</button>
+                            
                         </form>
                     </div>
-
                 </div>
             </div>
         </div>

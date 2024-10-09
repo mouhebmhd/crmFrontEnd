@@ -3,20 +3,19 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import SideBar from '../../components/sidebar/SideBar';
 import TopBar from '../../components/sidenav/TopNav';
+import style from '../../style/viewsStyle/CommandDetails.module.css'; // Import the module CSS
+import { CiPen } from "react-icons/ci";
 
 function CommandDetails() {
     const { id } = useParams();
     const [commands, setCommands] = useState([]);
-    //const role = localStorage.getItem('role');
     const token = localStorage.getItem('token');
 
-    // Define config outside of useEffect to ensure it's memoized correctly
     const config = useMemo(() => ({
         headers: {
             Authorization: `Bearer ${token}`,
         },
     }), [token]);
-
 
     useEffect(() => {
         async function fetchCommandById() {
@@ -28,7 +27,7 @@ function CommandDetails() {
             }
         }
         fetchCommandById();
-    }, [id, config]); // Include config in the dependency array
+    }, [id, config]);
 
     const handleInputChange = (event, index) => {
         const { name, value } = event.target;
@@ -51,21 +50,21 @@ function CommandDetails() {
     return (
         <div className="d-flex">
             <SideBar />
-            <div className="container-fluid flex-column">
+            <div className={`container-fluid ${style.containerFluid}`}>
                 <TopBar />
-                <div className="container-fluid p-2">
+                <div className={`container-fluid ${style.commandContainer}`}>
                     {commands.map((command, key) => (
-                        <div key={key}>
-                            <h2>{command.description_commande}</h2>
-                            <p>
-                                ID: {command.idcommande}<br />
-                                Date: {command.date_commande}<br />
-                                Total Amount: {command.montant_total_commande}<br />
-                                Address: {command.adresselivraison_commande}<br />
-                                Payment Method: {command.modepaiement_commande}<br />
-                                Status:
+                        <div className={style.commandCard} key={key}>
+                            <h2>Command Details</h2>
+                            <div className={style.commandDetails}>
+                                <div className="commandDetail"><span> ID : </span>{command.idcommande}<br /></div>
+                                <div className="commandDetail"><span>Date</span>{command.date_commande}<br /> </div> 
+                                <div className="commandDetail"><span>Total Amount: </span>{command.montant_total_commande}<br /></div>
+                                <div className="commandDetail"><span>Address: </span>{command.adresselivraison_commande}<br /></div>
+                                <div className="commandDetail"><span>Payment Method:</span> {command.modepaiement_commande}<br /></div>
+                                <div className="commandDetail"><span>Status:</span>
                                 <select
-                                    className="form-control"
+                                    className={`form-control d-inline-block ${style.statusSelect}`}
                                     id="statut_commande"
                                     name="statut_commande"
                                     onChange={(event) => handleInputChange(event, key)}
@@ -75,22 +74,24 @@ function CommandDetails() {
                                     <option value="expédié">expédié</option>
                                     <option value="livré">livré</option>
                                 </select>
-                                <br />
-                                Delivery Date: {command.date_livraison_commande}<br />
-                                Delivery Method: {command.metho_delivraison_commande}<br />
+                                <br /></div>
+                                <div className="commandDetail"><span>Delivery Date:</span> {command.date_livraison_commande}<br /></div>
+                                <div className="commandDetail"><span>Delivery Method: </span>{command.metho_delivraison_commande}<br /></div>
+                                <div className={style.buttonContainerF}>
                                 <button
-                                    className="btn btn-primary mr-2"
+                                    className={` ${style.buttonContainerFButton}`}
                                     onClick={() => updateCommandStatus(command.idcommande, command.statut_commande)}
                                 >
-                                    Update
+                                  <CiPen className="mx-1 penIcon fs-3"></CiPen>  Update
                                 </button>
-                            </p>
+                                </div>
+                            </div>
                         </div>
                     ))}
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 export default CommandDetails;

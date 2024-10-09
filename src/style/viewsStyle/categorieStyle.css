@@ -104,5 +104,12 @@
     }
   }
   
-
+.addCategoryButton
+{
+  background-color: var(--bs-primary);
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+}
 

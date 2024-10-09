@@ -37,7 +37,7 @@ function AddTask({ selectedTask, fetchTasks, tasks, setTasks }) {
   const [selectedEmployees, setSelectedEmployees] = useState([]);
 
 
-  const socket = io.connect("http://localhost:6000");
+  const socket = io.connect("http://localhost:8000");
 
 
   const config = useMemo(() => ({

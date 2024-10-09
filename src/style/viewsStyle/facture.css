@@ -44,7 +44,20 @@
     border-radius: 0.25rem;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
-  
+  .searchButton
+  {
+    width: fit-content;
+    background-color: #007bff;
+    display: flex;
+    align-items: center;
+    color: var(--bs-light) !important;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+    border-radius: 10px;
+  }
   .btn-primary {
     color: #fff;
     background-color: #007bff;
@@ -92,4 +105,31 @@
   .showButtonText
   {
     text-decoration: none;
+    display: flex;
+    align-items: center; 
+    font-size: 16px;
+  }
+  .deleteButtonInv
+  {
+    font-size: 18px; 
+    color: var(--bs-light) !important;
+    background-color: var(--bs-danger) !important;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+    border-radius: 10px;
+  }
+  .showButtonInv
+  {
+    font-size: 18px; 
+    color: var(--bs-light) !important;
+    background-color: var(--bs-success) !important;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+    border-radius: 10px;
   }

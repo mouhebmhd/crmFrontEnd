@@ -15,7 +15,7 @@ function EnvoyeeMailEmploye() {
   const userId = localStorage.getItem("userId");
   const refreshToken = localStorage.getItem('refreshToken');
   const [Messages, setMessages] = useState([]);
-  const socket = io.connect("http://localhost:6000");
+  const socket = io.connect("http://localhost:8000");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false); // State to manage emoji picker
   const [newMessage, setNewMessage] = useState('');
 
@@ -192,7 +192,7 @@ function EnvoyeeMailClient() {
   const userId = localStorage.getItem("userId");
   const refreshToken = localStorage.getItem('refreshToken');
   const [Messages, setMessages] = useState([]);
-  const socket = io.connect("http://localhost:60000");
+  const socket = io.connect("http://localhost:80000");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [newMessage, setNewMessage] = useState('');
 

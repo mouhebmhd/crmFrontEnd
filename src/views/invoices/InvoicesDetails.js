@@ -6,6 +6,9 @@ import TopBar from '../../components/sidenav/TopNav';
 import { saveAs } from 'file-saver';
 import { UserPermissionsContext } from '../context/UserPermissionsPage'; // Fixed import
 import "../../style/viewsStyle/invoicesStyles.css"
+import { IoIosCreate } from "react-icons/io";
+import { FaDownload } from "react-icons/fa";
+
 function InvoicesDetails() {
     const { id } = useParams();
     const [factureData, setFactureData] = useState({});
@@ -95,28 +98,27 @@ function InvoicesDetails() {
                         <div className="d-flex flex-wrap" id="invoice-details">
                             <div className="invoice-section mr-4">
                                 <h2>Command {factureData.description_commande}</h2>
-                                <p>
-                                    <span>ID</span>: {factureData.idcommande}<br />
-                                    <span>Date</span>: {factureData.date_commande}<br />
-                                    <span>Total Amount</span>: {factureData.montant_total_commande}<br />
-                                    <span>Address</span>: {factureData.adresselivraison_commande}<br />
-                                   <span> Payment Method</span>: {factureData.modepaiement_commande}<br />
-                                    <span>Status</span>: {factureData.statut_commande}<br />
-                                    <span>Delivery Date</span>: {factureData.date_livraison_commande}<br />
-                                    <span>Delivery Method</span>: {factureData.metho_delivraison_commande}
-                                </p>
+                                <div className='d-flex flex-column row-gap-1'>
+                                      <p><span> ID: </span>{factureData.idfacture}<br /> </p>
+                                      <p><span>  Date: </span>{factureData.date_facture}<br /></p>
+                                      <p><span>  Status: </span>{factureData.etat_facture}<br /></p>
+                                      <p><span>  Total Amount: </span>{factureData.montant_total_facture}<br /></p>
+                                      <p><span>  Payment Method: </span>{factureData.methode_paiment_facture}<br /></p>
+                                      <p><span> Due Date: </span>{factureData.date_echeance}<br /></p>
+                                        <p><span>  Payment Status: </span>{factureData.statut_paiement_facture}<br /></p>
+                                    </div>
                                 <div className="customer-section">
                                     <h2>Customer Information</h2>
                                     {customers.map((customer, key) => (
-                                        <p key={key}>
-                                            <span>ID</span>: {customer.idclient}<br />
-                                            <span>Name</span>: {customer.nom_client} {customer.prenom_client}<br />
-                                            <span>Phone</span>: {customer.telephone_client}<br />
-                                            <span>Address</span>: {customer.adresse_client}<br />
-                                            <span>Email</span>: {customer.email_client}<br />
-                                            <span>Genre</span>: {customer.genre_client}<br />
-                                            <span>Date of Birth</span>: {customer.datede_naissance_client}
-                                        </p>
+                                        <div key={key}>
+                                            <p><span>ID</span>: {customer.idclient}<br /> </p>
+                                            <p><span>Name</span>: {customer.nom_client} {customer.prenom_client}<br /></p>
+                                            <p><span>Phone</span>: {customer.telephone_client}<br /></p>
+                                            <p><span>Address</span>: {customer.adresse_client}<br /></p>
+                                            <p><span>Email</span>: {customer.email_client}<br /></p>
+                                            <p><span>Genre</span>: {customer.genre_client}<br /></p>
+                                            <p><span>Date of Birth</span>: {customer.datede_naissance_client}</p>
+                                        </div>
                                     ))}
                                 </div>
                             </div>
@@ -185,29 +187,29 @@ function InvoicesDetails() {
                                             </select>
                                         </div>
                                         {(isAdmin || userPermissions?.updateFacture === 1) && (
-                                            <button type="submit" className="btn btn-primary mr-2">
-                                                Create Invoice
+                                            <button type="submit" className="createInvoiceButton mr-2">
+                                            <IoIosCreate className="fs-5"></IoIosCreate>      Create Invoice
                                             </button>
                                         )}
-                                        <button type="button" className="btn btn-success" onClick={createAndDownloadPdf}>
-                                            Download Invoice PDF
+                                        <button type="button" className="downloadInvoiceButton" onClick={createAndDownloadPdf}>
+                                        <FaDownload className="fs-5"></FaDownload>   Download Invoice PDF
                                         </button>
                                     </div>
                                 </form>
                             ) : (
                                 <div>
                                     <h2>Invoice Details</h2>
-                                    <p>
-                                        ID: {factureData.idfacture}<br />
-                                        Date: {factureData.date_facture}<br />
-                                        Status: {factureData.etat_facture}<br />
-                                        Total Amount: {factureData.montant_total_facture}<br />
-                                        Payment Method: {factureData.methode_paiment_facture}<br />
-                                        Due Date: {factureData.date_echeance}<br />
-                                        Payment Status: {factureData.statut_paiement_facture}<br />
-                                    </p>
-                                    <button type="button" className="btn btn-success" onClick={createAndDownloadPdf}>
-                                        Download Invoice PDF
+                                    <div className='d-flex flex-column row-gap-1'>
+                                      <p> ID: {factureData.idfacture}<br /> </p>
+                                      <p>  Date: {factureData.date_facture}<br /></p>
+                                      <p>  Status: {factureData.etat_facture}<br /></p>
+                                      <p>  Total Amount: {factureData.montant_total_facture}<br /></p>
+                                      <p>  Payment Method: {factureData.methode_paiment_facture}<br /></p>
+                                      <p> Due Date: {factureData.date_echeance}<br /></p>
+                                        <p>  Payment Status: {factureData.statut_paiement_facture}<br /></p>
+                                    </div>
+                                    <button type="button" className="downloadInvoiceButton" onClick={createAndDownloadPdf}>
+                                     <FaDownload className="fs-5"></FaDownload>   Download Invoice PDF
                                     </button>
                                 </div>
                             )}

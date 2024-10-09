@@ -11,7 +11,9 @@ import { IoMdAddCircle } from "react-icons/io";
 import EmojiPicker from 'emoji-picker-react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 import { useLocation } from 'react-router-dom'; // Import useLocation
-
+import { IoIosSend } from "react-icons/io";
+import conversationImage from "../../images/conversationImage.png"
+import userImage from "../../images/avatar.png"
 
 
 
@@ -82,7 +84,7 @@ function MessengerPage() {
   }
 
 
-const val= 6000;
+const val= 8000;
 
 
   useEffect(() => {
@@ -337,8 +339,8 @@ const val= 6000;
       <SideBar />
       <div className="container-fluid flex-column">
         <TopBar />
-        <div className="container-fluid p-2 d-flex">
-          <div className="sidebar">
+        <div className="container-fluid messengerContainer p-2 ">
+          <div className="sidebar conversationBar">
             <div className="srch_bar">
               <div className="stylish-input-group">
                 <span className="input-group-addon">
@@ -355,12 +357,12 @@ const val= 6000;
             </div>
 
 
-            <div className='uniqueConversations'>
+            <div className='uniqueConversations '>
               <ul>
 
                 {uniqueConversations.map((conversation, index) => (
                   <li key={index} onClick={() => handleConversationClick(conversation)}>
-                    <img src={conversation.photo} />
+                    <img src={conversationImage}alt="" className="conversationPhoto" />
                     <span> {`${conversation.name} ${conversation.prenom}`}  </span>
                     <span>{conversation.role}</span>
                     {conversation.message && (
@@ -379,7 +381,7 @@ const val= 6000;
                   .filter((user) => !conversations.find((conversation) => conversation.id === user.userId))
                   .map((user, index) => (
                     <li key={index} onClick={() => handleConversationClick(user)}>
-                      <img src={user.photo} alt={`${user.name} ${user.prenom}`} />
+                      <img src={userImage} alt={`${user.name} ${user.prenom}`} />
                       <span>{user.role}</span>
 
                     </li>
@@ -391,75 +393,75 @@ const val= 6000;
 
 
           </div>
-
-
-
-
           {selectedConversation && (
 
-            <div className="conversation">
-              <div className="conversation-header">
-                <GiHamburgerMenu />
-                <span>{selectedConversation.rolereciever}</span>
-              </div>
-              <div className="conversation-body">
-                {messages.map((message, index) => {
-                  const timestamp = new Date(message.timestamp);
-                  return (
-                    <div
-                      key={index}
-                      className={`message ${message.sender_id == userId ? 'message-right' : 'message-left'} ${message.isSpam ? 'spam-message' : ''}`}
-                    >
-                      {message.isSpam ? (
-                        <div className="spam-warning" onClick={() => handleSpamMessageClick(message.id)}>
-                          This message is flagged as spam. Click to view.
-                        </div>
-                      ) : (
-                        <>
-                          {message.message.indexOf("File ") === 0 ? (
-                            <span className="isFile">
-                              <a href={message.message.substring(5)} target="_blank" download>
-                                {message.message.substring(5)}
-                              </a>
-                            </span>
-                          ) : (
-                            <span className="">{message.message}</span>
-                          )}
-                          <span className="messenger-timestamp">
-                            {formatTimestamp(timestamp)}
-                          </span>
-                        </>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-
-              <div className="conversation-footer">
-                <IoMdAddCircle onClick={handleAddFileClick} />
-                <input
-                  type="file"
-                  name="file_url"
-                  id="fileInput"
-                  style={{ display: 'none' }}
-                  onChange={handleFileChange}
-                  accept="image/*,application/pdf,.doc,.docx"
-                />
-                <button type="button" onClick={handleEmojiPickerToggle}>😀</button>
-                {showEmojiPicker && <EmojiPicker onEmojiClick={onEmojiClick} />}
-
-                <input
-                  type="text"
-                  name="message"
-                  value={newMessage}
-                  onChange={(e) =>{e.preventDefault(); setNewMessage(e.target.value)}}
-                  placeholder="Type your message here"
-
-                />
-                <button onClick={handleSendMessage}>Send</button>
-              </div>
+          <div className="conversation conversationsContainer">
+            <div className="conversation-header">
+              <GiHamburgerMenu />
+              <span>{selectedConversation.rolereciever}</span>
             </div>
-          )}
+            <div className="conversation-body">
+              {messages.map((message, index) => {
+                const timestamp = new Date(message.timestamp);
+                return (
+                  <div
+                    key={index}
+                    className={`message ${message.sender_id == userId ? 'message-right' : 'message-left'} ${message.isSpam ? 'spam-message' : ''}`}
+                  >
+                    {message.isSpam ? (
+                      <div className="spam-warning" onClick={() => handleSpamMessageClick(message.id)}>
+                        This message is flagged as spam. Click to view.
+                      </div>
+                    ) : (
+                      <>
+                        {message.message.indexOf("File ") === 0 ? (
+                          <span className="isFile">
+                            <a href={message.message.substring(5)} target="_blank" download>
+                              {message.message.substring(5)}
+                            </a>
+                          </span>
+                        ) : (
+                          <span className="">{message.message}</span>
+                        )}
+                        <span className="messenger-timestamp">
+                          {formatTimestamp(timestamp)}
+                        </span>
+                      </>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="conversation-footer">
+              <IoMdAddCircle onClick={handleAddFileClick} />
+              <input
+                type="file"
+                name="file_url"
+                id="fileInput"
+                style={{ display: 'none' }}
+                onChange={handleFileChange}
+                accept="image/*,application/pdf,.doc,.docx"
+              />
+              <button type="button" onClick={handleEmojiPickerToggle}>😀</button>
+              {showEmojiPicker && <EmojiPicker onEmojiClick={onEmojiClick} />}
+
+              <input
+                type="text"
+                name="message"
+                value={newMessage}
+                onChange={(e) =>{e.preventDefault(); setNewMessage(e.target.value)}}
+                placeholder="Type your message here"
+
+              />
+              <button className="sendMessageButton" onClick={handleSendMessage}><IoIosSend /> Send </button>
+            </div>
+          </div>
+)}
+
+
+
+         
 
         </div>
 

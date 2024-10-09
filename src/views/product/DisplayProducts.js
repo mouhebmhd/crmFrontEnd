@@ -4,6 +4,7 @@ import AddProduct from './addProduct';
 import { Link } from 'react-router-dom';
 import "../../style/products.css"
 import { UserPermissionsContext } from '../context/UserPermissionsPage'; // Correction de l'import
+import { IoMdAdd } from "react-icons/io";
 
 function DisplayProducts({ products, setProducts, addProduct, setSelectedProductId }) {
     const [loading, setLoading] = useState(true);
@@ -32,6 +33,7 @@ function DisplayProducts({ products, setProducts, addProduct, setSelectedProduct
             };
             const response = await axios.get(`http://127.0.0.1:4000/api/search/${searchTerm}?page=${page}&limit=10`, config);
             setProducts(response.data.products);
+            console.log(response.data.products)
             setTotalPages(Math.ceil(response.data.total / 10)); // Use limit parameter here
             setCurrentPage(page); // Update current page
         } catch (err) {
@@ -194,8 +196,8 @@ function DisplayProducts({ products, setProducts, addProduct, setSelectedProduct
 
                 {(isAdmin || (userPermissions && userPermissions.addProduit === 1)) && ( // Add parentheses here
 
-                    <button className="btn btn-success mr-2" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => handleUpdate('val', 'ajouter')}>
-                        Ajouter un nouveau produit +
+                    <button className="addProductButton mr-2" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => handleUpdate('val', 'ajouter')}>
+                        Ajouter un nouveau produit <IoMdAdd className='mx-1 text-white fs-4'></IoMdAdd>
                     </button>
                 )}
             </div>

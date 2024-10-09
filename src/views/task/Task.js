@@ -24,7 +24,7 @@ function Task() {
   const [selectedTask, setSelectedTask] = useState(null);
   const [isOpen, setIsOpen] = useState({});
 
-  const socket = io.connect("http://localhost:6000");
+  const socket = io.connect("http://localhost:8000");
 
 
   const config = useMemo(() => ({
