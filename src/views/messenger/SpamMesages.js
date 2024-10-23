@@ -1,23 +1,18 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { IoMdAddCircle, IoMdArrowBack } from "react-icons/io"; // Import the back icon
+import {  IoMdArrowBack } from "react-icons/io"; // Import the back icon
 import SideBar from '../../components/sidebar/SideBar';
 import TopBar from "../../components/sidenav/TopNav";
 import '../../style/viewsStyle/MessengerPage.css';
 import axios from 'axios';
 import { format, isToday, isYesterday, isThisWeek, isValid } from 'date-fns';
-import EmojiPicker from 'emoji-picker-react';
 
 function SpamMessages() {
     const { messageId } = useParams(); // Get the message ID from the URL
     const token = localStorage.getItem('token');
-    const role = localStorage.getItem("role");
-    const userId = localStorage.getItem("userId");
     const navigate = useNavigate(); // Initialize the navigate function to go back
 
     const [message, setMessage] = useState(null);
-    const [newMessage, setNewMessage] = useState('');
-    const [showEmojiPicker, setShowEmojiPicker] = useState(false); // Define showEmojiPicker
 
     const config = useMemo(() => {
         return {

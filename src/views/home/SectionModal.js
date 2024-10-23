@@ -89,7 +89,7 @@ function HeroSectionModal({ show, handleClose, heroData, fetchHeroSection }) {
     
 
     return (
-        <div className={`modal fade ${show ? 'show' : ''}`} style={{ display: show ? 'block' : 'none' }} tabIndex="-1" role="dialog">
+        <div className={`modal fade  editHeroModal ${show ? 'show' : ''}`} style={{ display: show ? 'block' : 'none' }} tabIndex="-1" role="dialog">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                     <div className="modal-header">
@@ -227,7 +227,7 @@ function StorySectionModal({ show, handleClose, storyData, fetchStorySection }) 
     };
 
     return (
-        <div className={`modal fade ${show ? 'show' : ''}`} style={{ display: show ? 'block' : 'none' }} tabIndex="-1" role="dialog">
+        <div className={`modal editStoryModal fade ${show ? 'show' : ''}`} style={{ display: show ? 'block' : 'none' }} tabIndex="-1" role="dialog">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                     <div className="modal-header">

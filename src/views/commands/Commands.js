@@ -10,7 +10,6 @@ import io from "socket.io-client";
 import { CiEdit } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
 import { IoIosInformationCircle } from "react-icons/io";
-import { FaInfo } from 'react-icons/fa';
 
 
 

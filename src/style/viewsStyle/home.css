@@ -428,3 +428,15 @@ body {
 {
   height:fit-content !important;
 }
+.modalEditor
+{
+  background-color: #fff !important;
+}
+.saveChangesButton
+{
+  background-color: #28A745 !important;
+  color: #fff !important;
+  border: none;
+  padding: 9px;
+  border-radius: 5px;
+}

@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaBell, FaArrowDown, FaShoppingBasket } from 'react-icons/fa';
+import { FaBell } from 'react-icons/fa';
 import { CiSettings } from "react-icons/ci";
 import flag from "../../images/flag.png";
 import { Link } from 'react-router-dom';
 import { IoIosNotifications } from "react-icons/io";
 
-import io from 'socket.io-client';
 import { FaCartArrowDown } from "react-icons/fa";
 
 import axios from 'axios';
@@ -17,16 +16,13 @@ import { useAuth } from '../../views/context/authContext';
 import { useNavigate } from 'react-router-dom'; // Correct import
 
 function TopNav() {
-    const currentUser = localStorage.getItem('username');
     const userId = localStorage.getItem('userId');
     const token = localStorage.getItem('token');
     const email = localStorage.getItem('email');
-    const photo = localStorage.getItem('photo');
 
     const [isOpen, setIsOpen] = useState(false);
     const [showNotifications, setShowNotifications] = useState(false);
 
-    const socketRef = useRef();
     const { state: { notifications, unreadCount }, dispatch } = useNotificationContext();
 
 

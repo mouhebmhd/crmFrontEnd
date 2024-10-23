@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import "../../style/addCategoryStyle.css"
 function AddCategorie({ addCategory, selectedCategory, setSelectedCategory, fetchCategories }) {
     const [formData, setFormData] = useState({
         nom_categorie: "",
@@ -79,7 +79,7 @@ function AddCategorie({ addCategory, selectedCategory, setSelectedCategory, fetc
 
     return (
         role !== 'client' && (
-            <div className="modal fade" id="categoryModal" tabIndex="-1" role="dialog" aria-labelledby="categoryModalLabel" aria-hidden="true">
+            <div className="modal fade addCategoryForm" id="categoryModal" tabIndex="-1" role="dialog" aria-labelledby="categoryModalLabel" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">

@@ -414,28 +414,28 @@ const FeedbackForm = () => {
 
                             <div className="feedback-actions">
                                 <button
-                                    className={`like-button ${feedback.user_reaction == 1 ? 'liked' : ''}`}
+                                    className={`like-button ${feedback.user_reaction == 1 ? 'liked mx-1' : ' mx-1'}`}
                                     onClick={() => handleLikeDislike(feedback.idfeedback, true)}
                                     style={{
-                                        border: feedback.user_reaction == 1 ? '2px solid #4caf50' : '2px solid #ccc',
+                                        border: feedback.user_reaction == 1 ? '2px solid #007BFF' : '2px solid #9E9E9E',
                                         padding: '10px',
                                         borderRadius: '5px',
                                     }}
                                 >
-                                    <FaThumbsUp className={`${feedback.user_reaction == 1 ? 'liked-icon' : ''}`} />
-                                    {feedback.likes_count} Like
+                                    <FaThumbsUp className={`${feedback.user_reaction == 1 ? 'liked-icon mx-1' : ' mx-1'}`} />
+                                    {feedback.likes_count} Like 
                                 </button>
 
                                 <button
-                                    className={`dislike-button ${feedback.user_reaction == 0 ? 'disliked' : ''}`}
+                                    className={`dislike-button ${feedback.user_reaction == 0 ? 'disliked mx-1' : ' mx-1'}`}
                                     onClick={() => handleLikeDislike(feedback.idfeedback, false)}
                                     style={{
-                                        border: feedback.user_reaction == 0 ? '2px solid #f44336' : '2px solid #ccc',
+                                        border: feedback.user_reaction == 0 ? '2px solid #007BFF' : '2px solid #9E9E9E',
                                         padding: '10px',
                                         borderRadius: '5px',
                                     }}
                                 >
-                                    <FaThumbsDown className={`${feedback.user_reaction == 0 ? 'disliked-icon' : ''}`} />
+                                    <FaThumbsDown className={`${feedback.user_reaction == 0 ? 'disliked-icon mx-1' : ' mx-1'}`} />
                                     {feedback.dislikes_count} Dislike
                                 </button>
 

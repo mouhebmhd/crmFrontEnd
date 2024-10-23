@@ -7,6 +7,9 @@ import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
+import  { FaCheck } from "react-icons/fa6";
+import { MdCancel } from "react-icons/md";
+
 import '../../style/viewsStyle/home.css';
 
 function ResponsibleCards() {
@@ -147,7 +150,7 @@ function ResponsibleCards() {
 
 
     return (
-        <div className="responsible-section">
+        <div className="responsible-section responsibleSectionEdit">
             <div>
                 <h2>Responsible Departments</h2>
                 <button className="add-btn" onClick={handleAdd}>
@@ -186,8 +189,8 @@ function ResponsibleCards() {
 
             {/* Modal for Adding/Editing Cards */}
             {showModal && (
-                <div className="modal-backdrop">
-                    <div className="modal-content">
+                <div className="modal-backdrop  modalEditor d-flex justify-content-center align-items-center">
+                    <div className="modal-content modalContent">
                         <form onSubmit={handleSubmit}>
                             <div className="form-group">
                                 <label>Department</label>
@@ -245,8 +248,8 @@ function ResponsibleCards() {
                                 {formData.image_url && <img src={formData.image_url} alt="Uploaded" width="100" />}
                             </div>
                             <div className="modal-footer">
-                                <button type="submit">Save Changes</button>
-                                <button type="button" onClick={() => setShowModal(false)}>Cancel</button>
+                                <button  class=" saveChangesButton" type="submit"><FaCheck></FaCheck> Save Changes</button>
+                                <button type="button" onClick={() => setShowModal(false)}><MdCancel className="mx-1"> </MdCancel>Cancel</button>
                             </div>
                         </form>
                     </div>
