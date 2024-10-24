@@ -31,12 +31,15 @@
     border-radius: 15px !important;
  
 }
-.productsList
+.productsListTable
 {
- 
-  margin-left: 175px !important;
-  width: auto !important;
 
+    width: 82.5vw !important;
+
+}
+td,th
+{
+    width: fit-content !important;
 }
 .addProductButton
 {
@@ -49,4 +52,38 @@
     border: none;
     color: #fff;
     font-size: 18px;
+}
+.productCard
+{
+    background-color: #fff;
+    width: 18rem !important;
+    border-radius: 10px;
+}
+.productsShow
+{
+    height: fit-content;
+}
+.productsDisplayer
+{
+    display: flex;
+    column-gap: 10px;
+    row-gap: 10px; 
+    justify-content: center;
+    width: 80vw !important;
+
+   height: 100%;
+
+}
+.showProductDetails,
+.buyProduct
+{
+    width: 150px !important;
+    text-decoration: none !important;
+    padding: 10px;
+}
+.contentContainer
+{
+    position: relative;
+    left: 250px;
+    width: 82vw ;
 }

@@ -112,7 +112,7 @@ function DisplayCategories({ categories, setCategories, addCategory }) {
         }
     };
     return (
-        <div>
+        <div className='contentContainer categoryContentDisplayer'>
             {role !== 'client' && (
                 <div>
                     <AddCategorie
@@ -122,7 +122,7 @@ function DisplayCategories({ categories, setCategories, addCategory }) {
                         fetchCategories={fetchCategories}
                     />
 
-                    <div className="container-fluid d-flex justify-content-end mb-2">
+                    <div className="container-fluid  d-flex justify-content-end mb-2">
                         {(isAdmin || (userPermissions && userPermissions.addCategorie === 1)) && ( // Add parentheses here
 
                             <button className="addCategoryButton mr-2" data-bs-toggle="modal" data-bs-target="#categoryModal" onClick={() => handleUpdate(null, 'ajouter')}>
@@ -143,7 +143,7 @@ function DisplayCategories({ categories, setCategories, addCategory }) {
                         <p>Loading...</p>
                     ) : (
 
-                        <table className="table">
+                        <table className="table categoriesDisplayer">
                             <thead>
                                 <tr>
                                     <th>Name</th>
