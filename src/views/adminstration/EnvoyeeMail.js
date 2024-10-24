@@ -308,7 +308,7 @@ function EnvoyeeMailClient() {
     return <div>Loading...</div>;
   }
   return (
-    <div className="messenger-container">
+    <div className="messenger-container ">
       <div className="messenger-header">
         <div className="messenger-title">to {email}</div>
       </div>

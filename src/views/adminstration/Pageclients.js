@@ -4,7 +4,7 @@ import axios from 'axios';
 import SideBar from '../../components/sidebar/SideBar';
 import TopBar from '../../components/sidenav/TopNav';
 import { Link } from 'react-router-dom';
-
+import "../../style/viewsStyle/clientsPage.css"
 
 
 function Pageclients() {
@@ -63,7 +63,7 @@ function Pageclients() {
       <SideBar />
       <div className="container-fluid flex-column">
         <TopBar />
-        <div className="container-fluid p-2">
+        <div className="container-fluid manageContactDiv p-2">
           <div className="row m-0 p-0">
             <div className="profile-card col-md-3">
               <img alt="Profile" className="profile-img" />
@@ -75,37 +75,37 @@ function Pageclients() {
                 <span>Contact info</span>
 
                 <div >
-                  <div >Nom</div>
+                  <div className="fw-bold">Nom</div>
                   <div >{clientsData[0].nom_client}{clientsData[0].prenom_client}</div>
                 </div>
 
                 <div >
-                  <div >Email address</div>
+                  <div className="fw-bold">Email address</div>
                   <div >{clientsData[0].email_client}</div>
                 </div>
 
                 <div >
-                  <div >Phone number</div>
+                  <div className="fw-bold">Phone number</div>
                   <div >{clientsData[0].telephone_client}</div>
                 </div>
                 <div >
-                  <div >Address</div>
+                  <div className="fw-bold">Address</div>
                   <div >{clientsData[0].adresse_client}</div>
                 </div>
                 <div>
-                  <div >Date of Birth</div>
+                  <div className="fw-bold">Date of Birth</div>
                   <div >{clientsData[0].datede_naissance_client}</div>
                 </div>
                 <div >
-                  <div >Date of Registration</div>
+                  <div className="fw-bold">Date of Registration</div>
                   <div >{clientsData[0].date_inscription_client}</div>
                 </div>
                 <div >
-                  <div >Gender</div>
+                  <div className="fw-bold">Gender</div>
                   <div >{clientsData[0].genre_client}</div>
                 </div>
                 <div >
-                  <div >Account Status</div>
+                  <div className="fw-bold">Account Status</div>
                   <div >{clientsData[0].etat_compte}</div>
                 </div>
               </div>
